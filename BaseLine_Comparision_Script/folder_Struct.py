@@ -4,7 +4,7 @@
 Created on Dec 10, 2014
 
 @author: sombeet_sahu
-Version1
+Version1.0
 
 Usage: folder_struct.py [options] folderpath
 
