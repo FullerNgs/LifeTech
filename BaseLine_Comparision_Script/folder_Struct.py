@@ -74,12 +74,11 @@ def main():
     #############################################################
 
     if options.readFolderCount:
-        beadSummary = readTxt(options.readFolderCount)
-        if beadSummary and not len(beadSummary) == 0:
-          #  print len([name for name in os.listdir('.') if os.path.isfile(name)])
-          DIR = os.path.dirname(os.path.realpath(__file__))
-            #DIR = 'C:/Users/sahus3/Desktop/BaseLine_Comparision_Script/'
-    print len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+        #beadSummary = readTxt(options.readFolderCount)
+        #if beadSummary and not len(beadSummary) == 0:
+        #print len([name for name in os.listdir('.') if os.path.isfile(name)])
+        DIR = os.path.dirname(os.path.realpath(__file__))
+        print len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
 
     
 if __name__ == '__main__':
