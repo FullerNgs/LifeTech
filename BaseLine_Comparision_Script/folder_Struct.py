@@ -14,7 +14,7 @@ Options:
   -count folderpath
 
     
-e.g. folder_Struct.py -a /home/ionadmin/sombeet/files
+e.g. folder_Struct.py -count /home/ionadmin/sombeet/files
 
 '''
 from optparse import OptionParser
@@ -74,11 +74,9 @@ def main():
     #############################################################
 
     if options.readFolderCount:
-        #beadSummary = readTxt(options.readFolderCount)
-        #if beadSummary and not len(beadSummary) == 0:
-        #print len([name for name in os.listdir('.') if os.path.isfile(name)])
         DIR = os.path.dirname(os.path.realpath(__file__))
         print len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+
 
     
 if __name__ == '__main__':
