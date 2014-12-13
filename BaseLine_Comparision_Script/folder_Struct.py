@@ -22,37 +22,23 @@ import re
 import json
 import os
 import os.path
+import sys
 
-
-def readTxt( txtFile ):
-    try:
-        jsn = dict()
-        with open(txtFile, 'r') as f:
-            content = f.readlines()
-            f.close()
-        for line in content:
-            if " = " in line:
-                key, value = line.rstrip().split(' = ')
-                jsn[key] = value
-        return jsn
-    except:
-        print "Error: can\'t find file or read data"
-        return None
-
-def parsePath( txtFile ):
-    try:
-        jsn = dict()
-        with open(txtFile, 'r') as f:
-            content = f.readlines()
-            f.close()
-        for line in content:
-            if " = " in line:
-                key, value = line.rstrip().split(' = ')
-                jsn[key] = value
-        return jsn
-    except:
-        print "Error: can\'t find file or read data"
-        return None
+#
+# def readTxt( txtFile ):
+#     try:
+#         jsn = dict()
+#         with open(txtFile, 'r') as f:
+#             content = f.readlines()
+#             f.close()
+#         for line in content:
+#             if " = " in line:
+#                 key, value = line.rstrip().split(' = ')
+#                 jsn[key] = value
+#         return jsn
+#     except:
+#         print "Error: can\'t find file or read data"
+#         return None
 
 
 def main():
@@ -77,7 +63,7 @@ def main():
         DIR = os.path.dirname(os.path.realpath(__file__))
         print len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
 
+        print str(sys.argv)
 
-    
 if __name__ == '__main__':
     main()
