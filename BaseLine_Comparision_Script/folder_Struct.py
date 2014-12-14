@@ -17,53 +17,52 @@ Options:
 e.g. folder_Struct.py -count /home/ionadmin/sombeet/files
 
 '''
-from optparse import OptionParser
-import re
-import json
-import os
-import os.path
-import sys
 
-#
-# def readTxt( txtFile ):
-#     try:
-#         jsn = dict()
-#         with open(txtFile, 'r') as f:
-#             content = f.readlines()
-#             f.close()
-#         for line in content:
-#             if " = " in line:
-#                 key, value = line.rstrip().split(' = ')
-#                 jsn[key] = value
-#         return jsn
-#     except:
-#         print "Error: can\'t find file or read data"
-#         return None
+import filecmp
+import os.path
+
+def are_dir_trees_equal(dir1, dir2):
+    """
+    author:sahus3
+    Compare two directories recursively. Files in each directory are
+    assumed to be equal if their names and contents are equal.
+
+    @param dir1: First directory path
+    @param dir2: Second directory path
+
+    @return: True if the directory trees are the same and
+        there were no errors while accessing the directories or files,
+        False otherwise
+   """
+
+
+    dirs_cmp = filecmp.dircmp(dir1, dir2)
+    if len(dirs_cmp.left_only)>0 or len(dirs_cmp.right_only)>0 or \
+        len(dirs_cmp.funny_files)>0:
+        return False
+    (_, mismatch, errors) =  filecmp.cmpfiles(
+        dir1, dir2, dirs_cmp.common_files, shallow=False)
+    if len(mismatch)>0 or len(errors)>0:
+        return False
+    for common_dir in dirs_cmp.common_dirs:
+        new_dir1 = os.path.join(dir1, common_dir)
+        new_dir2 = os.path.join(dir2, common_dir)
+        if not are_dir_trees_equal(new_dir1, new_dir2):
+            return False
+    return True
+
+
+
 
 
 def main():
-    parser = OptionParser(usage="usage: %prog [options] filename", version="%prog 1.0")
-    parser.add_option("-c", action="store", dest="readFolderCount", help="Required for testing folder structure.")
+    # DIR = os.path.dirname(os.path.realpath(__file__))
+    DIR = "C:\Program Files\DellTPad\Data\Cur"
+    DIR2 = "C:\Program Files\DellTPad\Data\Cur"
+    dr = are_dir_trees_equal(DIR, DIR2)
+    print dr
 
-    
-    options, args = parser.parse_args()
-    option_dict = vars(options)
-    val = [ v for v in option_dict.values() if v is not None]
-
-    if len(val) < 1:
-        parser.error("wrong number of arguments. Please use -h option")
-
-
-    
-    #############################################################
-    # Folder Structure Comparison from BaseLine Analysis: Count #
-    #############################################################
-
-    if options.readFolderCount:
-        DIR = os.path.dirname(os.path.realpath(__file__))
-        print len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
-
-        print str(sys.argv)
 
 if __name__ == '__main__':
     main()
+
