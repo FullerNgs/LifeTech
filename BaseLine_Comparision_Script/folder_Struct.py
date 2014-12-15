@@ -12,7 +12,7 @@ Options:
     Compare two directories recursively. Files in each directory are
     assumed to be equal if their names and contents are equal.
 
-    @param dir1: First directory path
+    @param dir1: First directory path     #CURRENTLY HARDCODED
     @param dir2: Second directory path
 
     @return: True if the directory trees are the same and
@@ -51,7 +51,7 @@ def are_dir_trees_equal(dir1, dir2):
 def main():
     # DIR = os.path.dirname(os.path.realpath(__file__))
     DIR = "C:\Users\sahus3\Desktop\dat1"
-    DIR2 = "C:\Users\sahus3\Desktop\dat2"
+    DIR2 = "C:\Users\sahus3\Desktop\dat3"
     dr = are_dir_trees_equal(DIR, DIR2)
     print dr
 
