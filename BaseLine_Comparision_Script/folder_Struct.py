@@ -9,21 +9,6 @@ Version 1.0
 Usage: folder_struct.py [options] folderpath
 
 Options:
---version             show program's version number and exit
-  -h, --help            show this help message and exit
-  -count folderpath
-
-    
-e.g. folder_Struct.py -count /home/ionadmin/sombeet/files
-
-'''
-
-import filecmp
-import os.path
-
-def are_dir_trees_equal(dir1, dir2):
-    """
-    author:sahus3
     Compare two directories recursively. Files in each directory are
     assumed to be equal if their names and contents are equal.
 
@@ -31,10 +16,18 @@ def are_dir_trees_equal(dir1, dir2):
     @param dir2: Second directory path
 
     @return: True if the directory trees are the same and
-        there were no errors while accessing the directories or files,
-        False otherwise
-   """
+    there were no errors while accessing the directories or files,
 
+    False otherwise
+
+e.g. folder_Struct.py /home/ionadmin/sombeet/files /home/ionadmin/sombeet/files2
+
+'''
+
+import filecmp
+import os.path
+
+def are_dir_trees_equal(dir1, dir2):
 
     dirs_cmp = filecmp.dircmp(dir1, dir2)
     if len(dirs_cmp.left_only)>0 or len(dirs_cmp.right_only)>0 or \
@@ -57,8 +50,8 @@ def are_dir_trees_equal(dir1, dir2):
 
 def main():
     # DIR = os.path.dirname(os.path.realpath(__file__))
-    DIR = "C:\Program Files\DellTPad\Data\Cur"
-    DIR2 = "C:\Program Files\DellTPad\Data\Cur"
+    DIR = "C:\Users\sahus3\Desktop\dat1"
+    DIR2 = "C:\Users\sahus3\Desktop\dat2"
     dr = are_dir_trees_equal(DIR, DIR2)
     print dr
 
