@@ -15,8 +15,8 @@ Options:
     Compare two directories recursively. Files in each directory are assumed to be
     equal if their names and contents are equal.
 
-    @param dir1: First directory path     #CURRENTLY HARDCODED WILL TAKE ARGUMENT
-    @param dir2: Second directory path    #CURRENTLY HARDCODED
+    @param dir1: First directory path     #CURRENTLY HARDCODED WILL TAKE ARGUMENT LATER
+    @param dir2: Second directory path    #CURRENTLY HARDCODED WILL TAKE ARGUMENT LATER
 
 Output:
     Prints if the file tree is same and  there were no errors while accessing the directories or files
