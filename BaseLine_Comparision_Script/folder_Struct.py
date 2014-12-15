@@ -3,7 +3,7 @@
 '''
 Created on Dec 10, 2014
 
-    @author: sombeet_sahu
+@author: sombeet_sahu
 
 Usage: folder_struct.py
     e.g. folder_Struct.py /home/ionadmin/sombeet/files /home/ionadmin/sombeet/files2
@@ -15,7 +15,7 @@ Options:
     Compare two directories recursively. Files in each directory are assumed to be
     equal if their names and contents are equal.
 
-    @param dir1: First directory path     #CURRENTLY HARDCODED
+    @param dir1: First directory path     #CURRENTLY HARDCODED WILL TAKE ARGUMENT
     @param dir2: Second directory path    #CURRENTLY HARDCODED
 
 Output:
@@ -29,13 +29,15 @@ import os.path
 def compare_directory(dir1, dir2):
 
     dirctry = filecmp.dircmp(dir1, dir2)
+    print dirctry.report()
     if len(dirctry.left_only)>0 or len(dirctry.right_only)>0 or \
         len(dirctry.funny_files)>0:
-        print False
+        #print False
         return False
 
-    (_, mismatch, errors) =  filecmp.cmpfiles(
+    (match, mismatch, errors) =  filecmp.cmpfiles(
         dir1, dir2, dirctry.common_files, shallow=False)
+    print match
     if len(mismatch)>0 or len(errors)>0:
         return False
     for common_dir in dirctry.common_dirs:
@@ -44,10 +46,6 @@ def compare_directory(dir1, dir2):
         if not compare_directory(new_dir1, new_dir2):
             return False
     return True
-
-
-
-
 
 
 def main():
