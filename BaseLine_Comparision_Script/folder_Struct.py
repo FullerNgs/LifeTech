@@ -25,6 +25,7 @@ Output:
 
 import filecmp
 import os.path
+#import os
 
 def compare_directory(dir1, dir2):
 
@@ -38,6 +39,7 @@ def compare_directory(dir1, dir2):
     (match, mismatch, errors) =  filecmp.cmpfiles(
         dir1, dir2, dirctry.common_files, shallow=False)
     print match
+    #print mismatch
     if len(mismatch)>0 or len(errors)>0:
         return False
     for common_dir in dirctry.common_dirs:
