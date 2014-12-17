@@ -30,7 +30,7 @@ import sys
 def compare_directory(dir1, dir2):
 
     dirctry = filecmp.dircmp(dir1, dir2)
-    # print dirctry.report()
+
 
     if len(dirctry.left_only)>0 or len(dirctry.right_only)>0 or \
         len(dirctry.funny_files)>0:
